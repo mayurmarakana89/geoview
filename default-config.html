@@ -75,66 +75,68 @@
         'corePackages': [],
         'theme': 'dark',
         'suportedLanguages': ['en']
-      }"></div><p>This map will not load layers with bad configuration and inform the user.</p><button type="button" class="collapsible">Configuration Snippet</button><pre id="CONF4CS" class="panel"></pre><hr/><div class="map-title-holder"><h4 id="HLCONF5">5. Load config from URL params</h4><a class="ref-link" href="#top">Top</a></div><div id="CONF5" class="llwp-map" data-lang="en" data-shared="true"></div><p>This map loads it's configurations from the URL parameters by providing <strong>data-shared</strong>. If <strong>data-config</strong> is provided then it will override all loaded config from parameters.</p><hr/><div class="map-title-holder"><h4 id="HLCONF6">6. Load config from file</h4><a class="ref-link" href="#top">Top</a></div><div id="CONF6" class="llwp-map" data-lang="en" data-config-url="./configs/my-config.json"></div><p>This map loads it's configurations from a file by providing <strong>data-config-url</strong>, the map is static!</p><hr/><div class="map-title-holder"><h4 id="HLCONF7">7. Load config from function call</h4><a class="ref-link" href="#top">Top</a></div><div id="CONF7" class="llwp-map" data-lang="fr"></div><p>This map loads it's configurations from a function call</p><hr/><button type="button" class="collapsible">Code Snippet</button><pre id="codeSnippet" class="panel"></pre><script src="codedoc.js"></script><script>// initialize cgpv and api events, a callback is optional, used if calling api's after the rendering is ready
+      }"></div><p>This map will not load layers with bad configuration and inform the user.</p><button type="button" class="collapsible">Configuration Snippet</button><pre id="CONF4CS" class="panel"></pre><hr/><div class="map-title-holder"><h4 id="HLCONF5">5. Load config from URL params</h4><a class="ref-link" href="#top">Top</a></div><div id="CONF5" class="llwp-map" data-lang="en" data-shared="true"></div><p>This map loads it's configurations from the URL parameters by providing <strong>data-shared</strong>. If <strong>data-config</strong> is provided then it will override all loaded config from parameters.</p><hr/><div class="map-title-holder"><h4 id="HLCONF6">6. Load config from file</h4><a class="ref-link" href="#top">Top</a></div><div id="CONF6" class="llwp-map" data-lang="en" data-config-url="./configs/my-config.json"></div><p>This map loads it's configurations from a file by providing <strong>data-config-url</strong>, the map is static!</p><hr/><div class="map-title-holder"><h4 id="HLCONF7">7. Load config from function call</h4><a class="ref-link" href="#top">Top</a></div><div id="CONF7" class="llwp-map" data-lang="fr"></div><p>This map loads it's configurations from a function call (after 10 seconds). Configuration error with double layer id.</p><hr/><button type="button" class="collapsible">Code Snippet</button><pre id="codeSnippet" class="panel"></pre><script src="codedoc.js"></script><script>// initialize cgpv and api events, a callback is optional, used if calling api's after the rendering is ready
       cgpv.init(function (mapId) {
         console.log('api is ready');
 
-        if (cgpv.api.maps['CONF7']) {
-          setTimeout(() => {
-            cgpv.api.maps['CONF7'].loadMapFromJsonStringConfig (`{
-              'map': {
-                'interaction': 'dynamic',
-                'viewSettings': {
-                  'zoom': 7,
-                  'center': [-110, 70],
-                  'projection': 3978
+        // TODO: init is not call for individual maps, onlly for all aps but in facts all maps are not created yet
+        //! bug
+        setTimeout(() => {
+          if (cgpv.api.maps['CONF7']) {
+              cgpv.api.maps['CONF7'].loadMapFromJsonStringConfig (`{
+                'map': {
+                  'interaction': 'dynamic',
+                  'viewSettings': {
+                    'zoom': 10,
+                    'center': [-110, 70],
+                    'projection': 3978
+                  },
+                  'basemapOptions': {
+                    'basemapId': 'transport',
+                    'shaded': false,
+                    'labeled': true
+                  },
+                  'listOfGeoviewLayerConfig': [{
+                    'geoviewLayerId': 'wmsLYR1',
+                    'geoviewLayerName': {
+                      'en': 'earthquakes',
+                      'fr': 'earthquakes'
+                    },
+                    'metadataAccessPath': {
+                      'en': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/',
+                      'fr': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/'
+                    },
+                    'geoviewLayerType': 'esriDynamic',
+                    'listOfLayerEntryConfig': [
+                      {
+                        'layerId': '0'
+                      }
+                    ]
+                  }, {
+                    'geoviewLayerId': 'wmsLYR1',
+                    'geoviewLayerName': {
+                      'en': 'earthquakes',
+                      'fr': 'earthquakes'
+                    },
+                    'metadataAccessPath': {
+                      'en': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/',
+                      'fr': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/'
+                    },
+                    'geoviewLayerType': 'esriDynamic',
+                    'listOfLayerEntryConfig': [
+                      {
+                        'layerId': '0'
+                      }
+                    ]
+                  }]
                 },
-                'basemapOptions': {
-                  'basemapId': 'transport',
-                  'shaded': false,
-                  'labeled': true
-                },
-                'listOfGeoviewLayerConfig': [{
-                  'geoviewLayerId': 'wmsLYR1',
-                  'geoviewLayerName': {
-                    'en': 'earthquakes',
-                    'fr': 'earthquakes'
-                  },
-                  'metadataAccessPath': {
-                    'en': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/',
-                    'fr': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/'
-                  },
-                  'geoviewLayerType': 'esriDynamic',
-                  'listOfLayerEntryConfig': [
-                    {
-                      'layerId': '0'
-                    }
-                  ]
-                }, {
-                  'geoviewLayerId': 'wmsLYR1',
-                  'geoviewLayerName': {
-                    'en': 'earthquakes',
-                    'fr': 'earthquakes'
-                  },
-                  'metadataAccessPath': {
-                    'en': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/',
-                    'fr': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/earthquakes_en/MapServer/'
-                  },
-                  'geoviewLayerType': 'esriDynamic',
-                  'listOfLayerEntryConfig': [
-                    {
-                      'layerId': '0'
-                    }
-                  ]
-                }]
-              },
-              'components': ['overview-map', 'nav-bar'],
-              'corePackages': [],
-              'theme': 'dark',
-              'suportedLanguages': ['en']
-            }`);
-          }, 2000);
-        }
+                'components': ['overview-map'],
+                'corePackages': [],
+                'theme': 'dark',
+                'suportedLanguages': ['en']
+              }`);
+          }
+        }, 10000);
 
         //create snippets
         createCodeSnippet();
