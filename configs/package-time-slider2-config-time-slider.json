@@ -17,7 +17,7 @@
       "defaultValue": ""
     },
     {
-      "layerPaths": ["MSI/msi-94-or-more"],
+      "layerPaths": ["MSI/msi-94-or-more"]
     }
   ],
   "suportedLanguages": ["en", "fr"]

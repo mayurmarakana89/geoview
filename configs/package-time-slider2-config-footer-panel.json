@@ -1,6 +1,6 @@
 {
   "tabs": {
-    "defaultTabs": ["legend", "details", "data-table", "time-slider"],
+    "defaultTabs": ["legend", "details", "time-slider"],
     "customTabs": []
   },
   "suportedLanguages": ["en", "fr"],
