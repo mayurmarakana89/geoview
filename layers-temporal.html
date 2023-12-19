@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Canadian Geospatial Platform Viewer</title><link rel="shortcut icon" href="./favicon.ico"/><meta name="msapplication-TileColor" content="#da532c"/><meta name="msapplication-config" content="./img/browserconfig.xml"/><meta name="theme-color" content="#ffffff"/><meta name="msapplication-TileColor" content="#da532c"/><meta name="theme-color" content="#ffffff"/><link href="https://fonts.googleapis.com/css?family=Roboto|Montserrat:200,300,400,900|Merriweather" rel="stylesheet"/><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/><link rel="stylesheet" href="css/style.css"/><script src="cgpv-main.js"></script></head><body><div class="header-table"><table><tbody><tr><td><img class="header-logo" alt="logo" src="./img/Logo.png"/></td><td class="header-title"><h1><strong>Layers</strong></h1></td></tr></tbody></table><table><tbody><tr><td><a href="./index.html">Main</a><br/><a href="#HLYR1">1. WMS Layer</a><br/><a href="#HLYR2">2. Esri Dynamic Service Layer</a><br/><a href="#HLYR3">3. Esri Feature Service Layer</a><br/></td></tr></tbody></table><table><tbody><tr><td>This page is used to showcase how the viewer may show different layer types</td></tr></tbody></table></div><div class="map-title-holder"><h4 id="HLYR1">1.WMS Layer</h4><a class="ref-link" href="#top">Top</a></div><div id="LYR1" class="llwp-map" data-lang="en" data-config="{
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Canadian Geospatial Platform Viewer</title><link rel="shortcut icon" href="./favicon.ico"/><meta name="msapplication-TileColor" content="#da532c"/><meta name="msapplication-config" content="./img/browserconfig.xml"/><meta name="theme-color" content="#ffffff"/><meta name="msapplication-TileColor" content="#da532c"/><meta name="theme-color" content="#ffffff"/><link href="https://fonts.googleapis.com/css?family=Roboto|Montserrat:200,300,400,900|Merriweather" rel="stylesheet"/><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/><link rel="stylesheet" href="css/style.css"/><script src="cgpv-main.js"></script></head><body><div class="header-table"><table><tbody><tr><td><img class="header-logo" alt="logo" src="./img/Logo.png"/></td><td class="header-title"><h1><strong>Layers</strong></h1></td></tr></tbody></table><table><tbody><tr><td><a href="./index.html">Main</a><br/><a href="#HLYR1">1. WMS Layer</a><br/><a href="#HLYR2">2. Esri Dynamic Service Layer</a><br/><a href="#HLYR3">3. Esri Feature Service Layer</a><br/></td></tr></tbody></table><table><tbody><tr><td>This page is used to showcase how the viewer may show different layer types</td></tr></tbody></table></div><div class="map-title-holder"><h4 id="HLYR1">1.WMS Layer</h4><a class="ref-link" href="#top">Top</a></div><div id="LYR1" class="geoview-map" data-lang="en" data-config="{
             'map': {
               'interaction': 'dynamic',
               'viewSettings': {
@@ -54,7 +54,7 @@
             'corePackages': [],
             'theme': 'dark',
             'suportedLanguages': ['en']
-          }"></div><p>This map has a wms temporal layer.</p><button type="button" class="collapsible">Temporal Dimension</button><pre id="LYR1TD" class="panel"></pre><hr/><div class="map-title-holder"><h4 id="HLYR2">3. Esri dynamic layer</h4><a class="ref-link" href="#top">Top</a></div><div id="LYR2" class="llwp-map" data-lang="en" data-config="{
+          }"></div><p>This map has a wms temporal layer.</p><button type="button" class="collapsible">Temporal Dimension</button><pre id="LYR1TD" class="panel"></pre><hr/><div class="map-title-holder"><h4 id="HLYR2">3. Esri dynamic layer</h4><a class="ref-link" href="#top">Top</a></div><div id="LYR2" class="geoview-map" data-lang="en" data-config="{
           'map': {
             'interaction': 'dynamic',
             'viewSettings': {
@@ -91,7 +91,7 @@
           'corePackages': [],
           'theme': 'dark',
           'suportedLanguages': ['en']
-        }"></div><p>This map has an Esri temporal dynamic layer.</p><button type="button" class="collapsible">Temporal Dimension</button><pre id="LYR2TD" class="panel"></pre><hr/><div class="map-title-holder"><h4 id="HLYR3">4. Esri feature layer</h4><a class="ref-link" href="#top">Top</a></div><div id="LYR3" class="llwp-map" data-lang="en" data-config="{
+        }"></div><p>This map has an Esri temporal dynamic layer.</p><button type="button" class="collapsible">Temporal Dimension</button><pre id="LYR2TD" class="panel"></pre><hr/><div class="map-title-holder"><h4 id="HLYR3">4. Esri feature layer</h4><a class="ref-link" href="#top">Top</a></div><div id="LYR3" class="geoview-map" data-lang="en" data-config="{
           'map': {
             'interaction': 'dynamic',
             'viewSettings': {
@@ -133,7 +133,9 @@
           var timeConsoleLyr2 = document.getElementById('LYR2TD');
           var timeConsoleLyr3 = document.getElementById('LYR3TD');
           timeConsoleLyr1.textContent = JSON.stringify(
-            cgpv.api.maps['LYR1'].layer.geoviewLayer('wmsLYR1-Root/wmsLYR1-Group1/wmsLYR1-Group2/wmsLYR1-Group3/RADAR_1KM_RSNO.ending').getTemporalDimension(),
+            cgpv.api.maps['LYR1'].layer
+              .geoviewLayer('wmsLYR1-Root/wmsLYR1-Group1/wmsLYR1-Group2/wmsLYR1-Group3/RADAR_1KM_RSNO.ending')
+              .getTemporalDimension(),
             undefined,
             2
           );
