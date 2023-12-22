@@ -203,7 +203,3 @@ th.state {
 table.state {
   display: flex;
 }
-
-*:focus {
-  box-shadow: 0 0 0 2px #f90; /* or whatever colour you'd prefer */
-}
