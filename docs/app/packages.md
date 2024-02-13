@@ -175,7 +175,7 @@ cgpv.init(function () {
 
 ## Loading bundled core packages
 
-The viewer is bundled with core packages, you can load them by passing their id in the map config object in the `corePackages` array as follows
+The viewer is bundled with core packages, you can load them by passing their id in the map config object in the `corePackages`, `footerBar.tabs.core` or `appBar.tabs.core` array as follows
 
 ```html
 <div
@@ -197,11 +197,21 @@ The viewer is bundled with core packages, you can load them by passing their id 
           }
         },
         'components': ['north-arrow', 'overview-map'],
-        'corePackages': ['details-panel', 'layers-panel', 'basemap-panel'],
+        'corePackages': ['swiper'],
+        'appBar': {
+          'tabs': {
+            'core': ['basemap-panel']
+          }
+        },
+        'footerBar': {
+          'tabs': {
+            'core': ['time-slider']
+          }
+        },
         'theme': 'dark',
         'suportedLanguages': ['en']
       }"
 ></div>
 ```
 
-Available package ids `details-panel`, `layers-panel`, `basemap-panel`, `footer-panel`
+Available package ids `basemap-panel`, `swiper`, `time-slider`, `geochart`
