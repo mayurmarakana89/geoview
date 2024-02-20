@@ -69,4 +69,8 @@
       mapLangButton.addEventListener('click', function (e) {
         const lang = cgpv.api.maps['LNG1'].getDisplayLanguage() === 'en' ? 'fr' : 'en';
         cgpv.api.maps['LNG1'].setLanguage(lang, true);
-      });</script></body></html>
+      });
+
+      // create snippets
+      createCodeSnippet();
+      createConfigSnippet();</script></body></html>
