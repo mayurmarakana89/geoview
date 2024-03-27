@@ -102,13 +102,15 @@
           'theme': 'dark',
           'suportedLanguages': ['en']
         }"></div><div style="display: flex"><p>This map display projection is:</p><div class="theme-selector"><select name="Switch Projection" id="switchProjection"><option value="3978">LCC</option><option value="3857">Web Mercator</option><option value="0000">Not Supported</option></select></div></div><button type="button" class="collapsible">Configuration Snippet</button><pre id="PRJ3CS" class="panel"></pre><hr/><script src="codedoc.js"></script><script>// initialize cgpv and api events, a callback is optional, used if calling api's after the rendering is ready
-      cgpv.init(function () {
-        console.log('api is ready');
+      cgpv.init((mapId) => {
+        if (mapId === 'allMaps') {
+          const switchProjectioneElem = document.getElementById('switchProjection');
+          switchProjectioneElem.addEventListener('change', (e) => {
+            cgpv.api.maps['PRJ3'].setProjection(e.target.value);
+          });
 
-        const switchProjectioneElem = document.getElementById('switchProjection');
-        switchProjectioneElem.addEventListener('change', (e) => {
-          cgpv.api.maps['PRJ3'].setProjection(e.target.value);
-        });
-        //create snippets
-        createConfigSnippet();
+          // create snippets
+          createCodeSnippet();
+          createConfigSnippet();
+        }
       });</script></body></html>

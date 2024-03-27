@@ -132,7 +132,8 @@
     "highlightFeaturesOnMap": "Déselctionner tout les items",
     "keepFeatureSelected": "Garder l'élément sélectionné",
     "detailsInstructions": "Instructions détaillées",
-    "loadingUI": "Chargement de l'interface utilisateur"
+    "loadingUI": "Chargement de l'interface utilisateur",
+    "featureDetailsTitle": "Élément {count} sur {total}"
   },
   "lightbox": {
     "next": "Prochaine",
@@ -157,7 +158,8 @@
       "loadfailed": "Le chargement de la couche [__param__] a échoué sur la carte __param__.",
       "notfound": "La sous couche __param__ de la couche GeoView __param__ n'existe pas sur le sereur",
       "createtwice": "On ne peut exécuter deux fois la méthode createGeoViewRasterLayers pour la carte __param__",
-      "usedtwice": "Utilisation en double de l'identifiant de couche geoview [__param__] sur la carte __param__"
+      "usedtwice": "Utilisation en double de l'identifiant de couche geoview [__param__] sur la carte __param__",
+      "multipleUUID": "Les couches GeoCore ne peuvent avoir qu'un seul UUID GeoCore par couche."
     },
     "schema": {
       "notFound": "Une erreur de schéma a été trouvée, vérifiez la console pour voir ce qui ne va pas.",
@@ -172,7 +174,9 @@
   "exportModal": {
     "title": "Exporter la carte en PNG",
     "cancelBtn": "Annuler",
-    "exportBtn": "Exporter"
+    "exportBtn": "Exporter",
+    "exportTitle": "Titre",
+    "approx": "approx"
   },
   "geolocator": {
     "search": "Texte à rechercher",
@@ -201,7 +205,10 @@
     "features": "Item(s)",
     "featureFiltered": "Item filtrée(s)",
     "images": "Images",
-    "close": "Fermer"
+    "close": "Fermer",
+    "dataTableInstructions": "Instructions relatives aux tableaux de données",
+    "selectVisbleLayer": "Cliquez sur une couche pour afficher le tableau de données",
+    "noFeatures": "inconnue..."
   },
   "geochart": {
     "noChartAvailable": "Cliquez sur la couche de carte avec le graphique"

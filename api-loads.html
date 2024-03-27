@@ -17,9 +17,13 @@
           'theme': 'dark',
           'suportedLanguages': ['en']
         }"></div><p>This map will call pygeoapi API to gather the geometry from id provided by URL geoms parameter and load them on the map.</p><p>div configuration: <strong>data-geometry-endpoint</strong> = "https://b6ryuvakk5.execute-api.us-east-1.amazonaws.com/dev/collections/canadian-geospatial-platform/items/"</p><button type="button" class="collapsible">Configuration Snippet</button><pre id="LNG1CS" class="panel"></pre><script src="codedoc.js"></script><script>// initialize cgpv and api events, a callback is optional, used if calling api's after the rendering is ready
-      cgpv.init(function () {
-        console.log('api is ready');
+      cgpv.init((mapId) => {
+        if (mapId === 'allMaps') {
+          // Write code here...
+          // ...
 
-        //create snippets
-        createConfigSnippet();
+          // create snippets
+          createCodeSnippet();
+          createConfigSnippet();
+        }
       });</script></body></html>

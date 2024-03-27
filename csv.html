@@ -67,7 +67,7 @@
         'corePackages': [],
         'theme': 'geo.ca',
         'suportedLanguages': ['en']
-        }"></div><button type="button" class="collapsible">Visibility and filters</button><pre id="layer1-buttons-pre" class="panel"></pre><button class="collapsible">Get Legend</button><pre id="LegendsId1-table-pre" class="panel"></pre><button type="button" class="collapsible">Get Feature Info</button><pre id="ResultSetId1-click" class="panel">Click on feature on the map</pre><button type="button" class="collapsible" id="AllFeatureInfo1">Get All Feature Info</button><pre id="ResultSetId1-all" class="panel"></pre><hr/><button type="button" class="collapsible">Configuration Snippet</button><pre id="CSV1CS" class="panel"></pre><hr/><button type="button" class="collapsible">Code Snippet</button><pre id="codeSnippet" class="panel"></pre><div class="map-title-holder"><h4 id="HCSV2">2. CSV Layers - with footer panel</h4><a class="ref-link" href="#top">Top</a></div><button class="collapsible active">Map Status Flags</button><pre id="HCSV2-state" class="panel map-title-holder"></pre><div id="CSV2" class="geoview-map" triggerreadycallback="true" data-lang="en" data-config="{
+        }"></div><button type="button" class="collapsible">Visibility and filters</button><pre id="layer1-buttons-pre" class="panel"></pre><button class="collapsible">Get Legend</button><pre id="LegendsId1-table-pre" class="panel"></pre><button type="button" class="collapsible">Get Feature Info</button><pre id="ResultSetId1-click" class="panel">Click on feature on the map</pre><button type="button" class="collapsible" id="AllFeatureInfo1">Get All Feature Info (csvLYR1/NPRI-INRP_WaterEau_MediaGroupMilieu_2022)</button><pre id="ResultSetId1-all-features" class="panel"></pre><hr/><button type="button" class="collapsible">Configuration Snippet</button><pre id="CSV1CS" class="panel"></pre><hr/><button type="button" class="collapsible">Code Snippet</button><pre id="codeSnippet" class="panel"></pre><div class="map-title-holder"><h4 id="HCSV2">2. CSV Layers - with footer panel</h4><a class="ref-link" href="#top">Top</a></div><button class="collapsible active">Map Status Flags</button><pre id="HCSV2-state" class="panel map-title-holder"></pre><div id="CSV2" class="geoview-map" triggerreadycallback="true" data-lang="en" data-config="{
         'map': {
           'interaction': 'dynamic',
           'viewSettings': {
@@ -142,41 +142,35 @@
         'theme': 'geo.ca',
         'suportedLanguages': ['en']
         }"></div><script src="codedoc.js"></script><script src="layerlib.js"></script><script>// initialize cgpv and api events, a callback is optional, used if calling api's after the rendering is ready
-      cgpv.init(function (mapId) {
-        console.log(`api is ready for ${mapId}`);
-
+      cgpv.init((mapId) => {
         if (mapId === 'allMaps') {
-          createTableOfFilter('CSV1');
-        }
-      });
-
-      // CSV1 ===================================================================================================================
-      const getAllFeatureInfo1 = document.getElementById('AllFeatureInfo1');
-      getAllFeatureInfo1.addEventListener('click', function (e) {
-            cgpv.api.event.emit({ event: 'map/get_all_features', handlerName: 'CSV1' });
+          // Wire a handle when all queries done after a map click
+          cgpv.api.maps['CSV1'].layer.featureInfoLayerSet.onQueryEnded((sender, payload) => {
+            const { coordinate, resultSet, eventType } = payload;
+            createInfoTable('CSV1', 'ResultSetId1', resultSet, eventType);
+          });
+          cgpv.api.maps['CSV1'].layer.legendsLayerSet.onLayerSetUpdated((sender, payload) => {
+            const { resultSet } = payload;
+            displayLegend('LegendsId1', resultSet);
           });
 
-      cgpv.api.event.on(
-        cgpv.api.eventNames.GET_FEATURE_INFO.ALL_QUERIES_DONE,
-        (payload) => {
-          const { layerSetId, resultSets, eventType } = payload;
-          createInfoTable('CSV1', 'ResultSetId1', resultSets, eventType);
-        },
-        'CSV1/FeatureInfoLayerSet'
-      );
+          listenToLegendLayerSetChanges('HCSV1-state', 'CSV1');
+          listenToLegendLayerSetChanges('HCSV2-state', 'CSV2');
 
-      const LegendLayerSet = cgpv.api.getLegendsLayerSet('CSV1');
-      cgpv.api.event.on(
-        cgpv.api.eventNames.GET_LEGENDS.LEGENDS_LAYERSET_UPDATED,
-        (payload) => {
-          const { resultSets } = payload;
-          if (resultSets) displayLegend('LegendsId1', resultSets);
-        },
-        'CSV1/LegendsLayerSet'
-      );
+          // CSV1 ===================================================================================================================
+          const getAllFeatureInfo1 = document.getElementById('AllFeatureInfo1');
+          getAllFeatureInfo1.addEventListener('click', async () => {
+            const resultSet = await cgpv.api.maps['CSV1'].layer.allFeatureInfoLayerSet.queryLayer('csvLYR1/NPRI-INRP_WaterEau_MediaGroupMilieu_2022');
+            createInfoTable('CSV1', 'ResultSetId1', resultSet, 'all-features');
+          });
 
-      listenToLegendLayerSetChanges('HCSV1-state', 'CSV1/LegendsLayerSet');
-      listenToLegendLayerSetChanges('HCSV2-state', 'CSV2/LegendsLayerSet');
-      //create snippets
-      createCodeSnippet();
-      createConfigSnippet();</script></body></html>
+          // create snippets
+          createCodeSnippet();
+          createConfigSnippet();
+        }
+      }, (mapId) => {
+        if (mapId === 'allMaps') {
+          // Layers are loaded
+          createTableOfFilter('CSV1');
+        }
+      });</script></body></html>

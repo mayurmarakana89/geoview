@@ -32,7 +32,7 @@
               'metadataAccessPath': {
                 'en': 'https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/womens_placenames_en/MapServer/'
               },
-              'geoviewLayerType': 'esriFeature',
+              'geoviewLayerType': 'esriDynamic',
               'listOfLayerEntryConfig': [
                 {
                   'layerId': '0',
@@ -67,12 +67,12 @@
         'theme': 'geo.ca',
         'suportedLanguages': ['en']
         }"></div><script src="codedoc.js"></script><script src="layerlib.js"></script><script>// initialize cgpv and api events, a callback is optional, used if calling api's after the rendering is ready
-      cgpv.init(function (mapId) {
-        console.log(`api is ready for ${mapId}`);
-      });
+      cgpv.init((mapId) => {
+        if (mapId === 'allMaps') {
+          listenToLegendLayerSetChanges('HMap1-state', 'Map1');
 
-      listenToLegendLayerSetChanges('HMap1-state', 'Map1/LegendsLayerSet');
-
-      //create snippets
-      createCodeSnippet();
-      createConfigSnippet();</script></body></html>
+          // create snippets
+          createCodeSnippet();
+          createConfigSnippet();
+        }
+      });</script></body></html>

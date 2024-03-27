@@ -132,7 +132,8 @@
     "highlightFeaturesOnMap": "Highlight features on map",
     "keepFeatureSelected": "Keep feature highlighted",
     "detailsInstructions": "Details Instructions",
-    "loadingUI": "Loading user interface"
+    "loadingUI": "Loading user interface",
+    "featureDetailsTitle": "Feature {count} of {total}"
   },
   "lightbox": {
     "next": "Next",
@@ -157,7 +158,8 @@
       "loadfailed": "Layer [__param__] failed to load on map __param__.",
       "notfound": "The sublayer __param__ of the GeoView layer __param__ does not exist on the server",
       "createtwice": "Can not execute twice the createGeoViewRasterLayers method for the map __param__",
-      "usedtwice": "Duplicate use of geoview layer identifier [__param__] on map __param__"
+      "usedtwice": "Duplicate use of geoview layer identifier [__param__] on map __param__",
+      "multipleUUID": "GeoCore layers may only have one GeoCore UUID per layer"
     },
     "schema": {
       "notFound": "A schema error was found, check the console to see what is wrong.",
@@ -172,7 +174,9 @@
   "exportModal": {
     "title": "Export Map as PNG",
     "cancelBtn": "Cancel",
-    "exportBtn": "Export"
+    "exportBtn": "Export",
+    "exportTitle": "Title",
+    "approx": "approx"
   },
   "geolocator": {
     "search": "Search",
@@ -201,7 +205,10 @@
     "features": "feature(s)",
     "featureFiltered": "features filtered",
     "images": "Images",
-    "close": "Close"
+    "close": "Close",
+    "dataTableInstructions": "Data Table Instructions",
+    "selectVisbleLayer": "Click on a layer to view the data table",
+    "noFeatures": "unknown..."
   },
   "geoChart": {
     "noChartAvailable": "Click on the map layer with chart"
